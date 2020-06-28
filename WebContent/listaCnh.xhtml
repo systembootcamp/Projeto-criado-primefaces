@@ -1,0 +1,38 @@
+<ui:composition template="layoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Lista de Categorias</ui:define>
+	<ui:define name="corpo">
+		<h:form>
+			<p:growl />
+
+			<p:panel header="Lista de Categorias">
+				<p:dataTable border="1" value="#{cnhControllerLucasGomes.lista}"
+					var="cnh" emptyMessage="Nenhuma CNH cadastrada!">
+					<p:column headerText="Id">
+						<h:outputText value="#{cnh.id}" />
+					</p:column>
+					<p:column headerText="Descrição da CNH">
+						<h:outputText value="#{cnh.descCat}" />
+					</p:column>
+					<p:column headerText="Ação">
+						<p:commandButton value="Excluir"
+							action="#{cnhControllerLucasGomes.excluir}" ajax="false">
+							<f:setPropertyActionListener value="#{cnh}"
+								target="#{cnhControllerLucasGomes.cnhLucasGomes}" />
+						</p:commandButton>
+						<p:commandButton value="Editar"
+							action="#{cnhControllerLucasGomes.editar}" ajax="false">
+							<f:setPropertyActionListener value="#{cnh}"
+								target="#{cnhControllerLucasGomes.cnhLucasGomes}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

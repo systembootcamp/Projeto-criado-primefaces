@@ -1,0 +1,35 @@
+<ui:composition template="layoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de CNH</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+			<!-- <p:messages closable="true" /> -->
+			<p:growl />
+
+			<p:panel header="Cadastro de CNH">
+
+				<p:panelGrid columns="2">
+					<h:outputText value="Categoria da CNH: *" />
+					<p:inputText
+						value="#{cnhControllerLucasGomes.cnhLucasGomes.descCat}"
+						required="true" requiredMessage="O campo Categoria é obrigatório!">
+						<f:validateLength maximum="60" />
+					</p:inputText>
+					<f:facet name="footer">
+						<p:commandButton value="Salvar"
+							action="#{cnhControllerLucasGomes.salvar}" ajax="false" />
+						<p:commandButton value="Limpar" action="cadastroCnh.xhtml"
+							actionListener="#{cnhControllerLucasGomes.limparCampos}"
+							immediate="true" ajax="false" />
+					</f:facet>
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

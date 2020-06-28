@@ -1,0 +1,59 @@
+<ui:composition template="layoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Lista de Motoristas</ui:define>
+	<ui:define name="corpo">
+		<h:form>
+			<p:growl />
+			<p:panel header="Lista de Motoristas">
+				<p:dataTable border="1"
+					value="#{motoristaControllerLucasGomes.lista}" var="motorista"
+					emptyMessage="Nenhum MOTORISTA cadastrado!">
+					<p:column headerText="Id">
+						<h:outputText value="#{motorista.id}" />
+					</p:column>
+					<p:column headerText="Nome do Motorista">
+						<h:outputText value="#{motorista.nomeMotorista}" />
+					</p:column>
+					<p:column headerText="Categoria">
+						<h:outputText value="#{motorista.cnhLucasGomes.descCat}" />
+					</p:column>
+					<p:column headerText="Destino">
+						<h:outputText value="#{motorista.destino}" />
+					</p:column>
+					<p:column headerText="Distancia">
+						<h:outputText value="#{motorista.distancia}" />
+					</p:column>
+					<p:column headerText="Valor do KM">
+						<h:outputText value="#{motorista.valorKm}" />
+					</p:column>
+					<p:column headerText="Desconto">
+						<h:outputText value="#{motorista.desconto}" />
+					</p:column>
+					<p:column headerText="Data da Corrida">
+						<h:outputText value="#{motorista.dataCorrida}">
+							<f:convertDateTime pattern="dd/MM/yyyy"
+								timeZone="America/Sao_Paulo" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Ação">
+						<p:commandButton style="text-align: center;" value="Excluir"
+							action="#{motoristaControllerLucasGomes.excluir}" ajax="false">
+							<f:setPropertyActionListener value="#{motorista}"
+								target="#{motoristaControllerLucasGomes.motoristaLucasGomes}" />
+						</p:commandButton>
+						<p:commandButton value="Editar"
+							action="#{motoristaControllerLucasGomes.editar}" ajax="false">
+							<f:setPropertyActionListener value="#{motorista}"
+								target="#{motoristaControllerLucasGomes.motoristaLucasGomes}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
